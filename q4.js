@@ -19,25 +19,22 @@ const output = {}
 time = 0
 
 function fxn(array) {
+
     for (item in array) {
         id = array[item].id;
-        steps = array[0].productionSteps;
-        // console.log(id,steps)
+        steps = array[item].productionSteps;
 
         output[id] = {};
 
-        for (step = 0; step<steps.length; step++) {
-            output[id][step] = {};
+        for (step in steps) {
             s = steps[step].step;
             time += steps[step].time;
-            console.log(s, time)
-            output[id][step] = {s: time}
+            output[id][s] = time;
         }
         time = 0;
     }
-    return(output)
 
+    return(output)
 }
 
 console.log(fxn(input))
-// fxn(input)
