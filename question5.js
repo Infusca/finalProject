@@ -5,23 +5,31 @@ input = [
     {'id': '3'},
     {'id': '4', 'manager': '3'}]
 
-managers = {}
+m = 0;
 
-function getEmployees(emp){
-    for (i in emp) {
-        console.log(i, emp[i])
+function listByManager(input, m) {
+    // get manager id
+    
+    for (i=0; i<input.length; i++){
+        employees = [];
+        for (i in input){
+            managerId = input[i].manager;
+            if (managerId && m != managerId){
+                m = managerId;
+                employeeId = input[i].id;
+                employees.push(employeeId);
+                // console.log(managerId, employees)
+                input[i].manager = employees;
+                // console.log(employees)
+            } else if (managerId && m == managerId) {
+                // console.log(managerId, m, employeeId)
+                employees.push(employeeId);
+            }
+            
+        } 
     }
+    
 }
 
-function listByManagerID(input) {
-
-    for (i=0; i<input.length; i++) {
-        // console.log(input[i], input[i].id, input[i].manager)
-        managers[input[i].manager] = [];
-    }
-
-    return managers
-}
-
-ans = listByManagerID(input)
-console.log('answer: ', ans)
+x = listByManager(input)
+console.log(x);
